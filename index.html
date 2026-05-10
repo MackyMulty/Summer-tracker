@@ -22,7 +22,7 @@ body{background:var(--cream);color:var(--ink);font-family:var(--mono);display:fl
 .tab{flex:1;padding:9px 2px;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;}
 .tab.on{color:var(--gold);border-bottom-color:var(--gold);}
 #panels{flex:1;overflow:hidden;position:relative;}
-.panel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:none;}
+.panel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:none;background:var(--cream);color:var(--ink);}
 .panel.on{display:block;}
 .dark-card{background:var(--ink);border-radius:8px;padding:14px;margin-bottom:14px;color:var(--cream);}
 .white-card{background:#fff;border:1px solid var(--div);border-radius:6px;padding:14px;margin-bottom:12px;}
@@ -57,13 +57,13 @@ body{background:var(--cream);color:var(--ink);font-family:var(--mono);display:fl
 #prog-lbl{font-size:.6rem;color:var(--sage);white-space:nowrap;}
 #pts-today{font-size:.58rem;color:var(--gold);margin-left:auto;white-space:nowrap;}
 .sec-hdr{font-size:.54rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--div);padding-bottom:5px;margin:14px 0 6px;}
-.chk{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:3px;margin-bottom:4px;cursor:pointer;user-select:none;}
+.chk{display:flex;align-items:center;gap:10px;padding:8px 6px;border-radius:3px;margin-bottom:4px;cursor:pointer;user-select:none;background:var(--cream);}
 .chk:active{background:#ede8e0;}
 .chk.done{opacity:.45;}
 .chk.done .chk-lbl{text-decoration:line-through;}
 .chk-box{width:16px;height:16px;border:1.5px solid var(--div);border-radius:2px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
 .chk.done .chk-box{background:var(--sage);border-color:var(--sage);}
-.chk-lbl{font-size:.72rem;flex:1;line-height:1.3;}
+.chk-lbl{font-size:.72rem;flex:1;line-height:1.3;color:var(--ink);}
 .chk-tag{font-size:.5rem;letter-spacing:.07em;text-transform:uppercase;padding:2px 6px;border-radius:2px;white-space:nowrap;}
 .chk-pts{font-size:.55rem;color:var(--gold);white-space:nowrap;}
 .bonus-chip{display:inline-flex;align-items:center;gap:5px;border-radius:3px;padding:3px 8px;font-size:.58rem;margin-top:4px;}
@@ -213,29 +213,29 @@ var LEVELS=[
 var TAG_CLS={fit:'t-fit',dog:'t-dog',read:'t-read',write:'t-write',career:'t-career',eve:'t-eve'};
 var SCHED={
   Monday:{
-    morning:[{id:'mo-str',label:'Stretch & mobility',tag:'fit'},{id:'mo-wlk',label:'Morning dog walk',tag:'dog'},{id:'mo-wgh',label:'Weigh-in',tag:'fit'},{id:'mo-rd',label:'Morning reading',tag:'read'}],
-    daytime:[{id:'mo-gym',label:'Gym — lift',tag:'fit'},{id:'mo-prk',label:'Dog park',tag:'dog'},{id:'mo-sto',label:'Short story intake / brainstorm',tag:'write'},{id:'mo-car',label:'Course dev / career work',tag:'career'},{id:'mo-dpm',label:'Afternoon dog time',tag:'dog'}],
-    evening:[{id:'mo-ewk',label:'Evening dog walk',tag:'dog'},{id:'mo-pod',label:'Podcast time',tag:'read'},{id:'mo-wnd',label:'Wind down by 10:30',tag:'eve'}]
+    morning:[{id:'mo-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'mo-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'mo-wgh',label:'Weigh-in',tag:'fit',time:'9:00'},{id:'mo-rd',label:'Morning reading',tag:'read',time:'9:15'}],
+    daytime:[{id:'mo-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'mo-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'mo-sto',label:'Short story intake / brainstorm',tag:'write',time:'12:15'},{id:'mo-car',label:'Course dev / career work',tag:'career',time:'2:00'},{id:'mo-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'}],
+    evening:[{id:'mo-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'mo-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'mo-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Tuesday:{
-    morning:[{id:'tu-str',label:'Stretch & mobility',tag:'fit'},{id:'tu-wlk',label:'Morning dog walk',tag:'dog'},{id:'tu-rd',label:'Morning reading',tag:'read'}],
-    daytime:[{id:'tu-yog',label:'Yoga / mobility',tag:'fit'},{id:'tu-rdp',label:'Reading block',tag:'read'},{id:'tu-ths',label:'Thesis writing',tag:'write'},{id:'tu-dpm',label:'Afternoon dog time',tag:'dog'},{id:'tu-pol',label:'Polish / overflow',tag:'write'}],
-    evening:[{id:'tu-ewk',label:'Evening dog walk',tag:'dog'},{id:'tu-pod',label:'Podcast time',tag:'read'},{id:'tu-wnd',label:'Wind down by 10:30',tag:'eve'}]
+    morning:[{id:'tu-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'tu-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'tu-rd',label:'Morning reading',tag:'read',time:'9:15'}],
+    daytime:[{id:'tu-yog',label:'Yoga / mobility',tag:'fit',time:'10:00'},{id:'tu-rdp',label:'Reading block',tag:'read',time:'10:45'},{id:'tu-ths',label:'Thesis writing',tag:'write',time:'12:30'},{id:'tu-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'},{id:'tu-pol',label:'Polish / overflow',tag:'write',time:'4:00'}],
+    evening:[{id:'tu-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'tu-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'tu-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Wednesday:{
-    morning:[{id:'we-str',label:'Stretch & mobility',tag:'fit'},{id:'we-wlk',label:'Morning dog walk',tag:'dog'},{id:'we-rd',label:'Morning reading',tag:'read'}],
-    daytime:[{id:'we-gym',label:'Gym — lift',tag:'fit'},{id:'we-prk',label:'Dog park',tag:'dog'},{id:'we-ths',label:'Thesis writing — deep revision',tag:'write'},{id:'we-dpm',label:'Afternoon dog time',tag:'dog'},{id:'we-adm',label:'Overflow / admin',tag:'write'}],
-    evening:[{id:'we-ewk',label:'Evening dog walk',tag:'dog'},{id:'we-flm',label:'Film of the week',tag:'eve'},{id:'we-wnd',label:'Wind down by 10:30',tag:'eve'}]
+    morning:[{id:'we-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'we-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'we-rd',label:'Morning reading',tag:'read',time:'9:15'}],
+    daytime:[{id:'we-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'we-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'we-ths',label:'Thesis writing — deep revision',tag:'write',time:'12:15'},{id:'we-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'},{id:'we-adm',label:'Overflow / admin',tag:'write',time:'4:00'}],
+    evening:[{id:'we-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'we-flm',label:'Film of the week',tag:'eve',time:'7:30'},{id:'we-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Thursday:{
-    morning:[{id:'th-str',label:'Stretch & mobility',tag:'fit'},{id:'th-wlk',label:'Morning dog walk',tag:'dog'},{id:'th-rd',label:'Morning reading',tag:'read'}],
-    daytime:[{id:'th-yog',label:'Yoga / mobility',tag:'fit'},{id:'th-rdp',label:'Reading block',tag:'read'},{id:'th-ths',label:'Thesis writing',tag:'write'},{id:'th-car',label:'Course dev / career work',tag:'career'},{id:'th-not',label:'Loose work / notes',tag:'write'}],
-    evening:[{id:'th-ewk',label:'Evening dog walk',tag:'dog'},{id:'th-jrn',label:'Light journaling',tag:'write'},{id:'th-wnd',label:'Wind down by 10:30',tag:'eve'}]
+    morning:[{id:'th-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'th-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'th-rd',label:'Morning reading',tag:'read',time:'9:15'}],
+    daytime:[{id:'th-yog',label:'Yoga / mobility',tag:'fit',time:'10:00'},{id:'th-rdp',label:'Reading block',tag:'read',time:'10:45'},{id:'th-ths',label:'Thesis writing',tag:'write',time:'12:30'},{id:'th-car',label:'Course dev / career work',tag:'career',time:'2:30'},{id:'th-not',label:'Loose work / notes',tag:'write',time:'4:00'}],
+    evening:[{id:'th-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'th-jrn',label:'Light journaling',tag:'write',time:'7:30'},{id:'th-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Friday:{
-    morning:[{id:'fr-str',label:'Stretch & mobility',tag:'fit'},{id:'fr-wlk',label:'Morning dog walk',tag:'dog'},{id:'fr-wgh',label:'Weigh-in',tag:'fit'},{id:'fr-rd',label:'Morning reading — pleasure',tag:'read'}],
-    daytime:[{id:'fr-gym',label:'Gym — lift',tag:'fit'},{id:'fr-adv',label:'Long dog adventure',tag:'dog'},{id:'fr-sto',label:'Short story work',tag:'write'},{id:'fr-dpm',label:'Afternoon dog time',tag:'dog'},{id:'fr-ref',label:'Week reflection',tag:'write'}],
-    evening:[{id:'fr-ewk',label:'Evening dog walk',tag:'dog'},{id:'fr-pod',label:'Podcast time',tag:'read'},{id:'fr-fre',label:'Free evening',tag:'eve'}]
+    morning:[{id:'fr-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'fr-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'fr-wgh',label:'Weigh-in',tag:'fit',time:'9:00'},{id:'fr-rd',label:'Morning reading — pleasure',tag:'read',time:'9:15'}],
+    daytime:[{id:'fr-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'fr-adv',label:'Long dog adventure',tag:'dog',time:'11:00'},{id:'fr-sto',label:'Short story work',tag:'write',time:'12:45'},{id:'fr-dpm',label:'Afternoon dog time',tag:'dog',time:'2:30'},{id:'fr-ref',label:'Week reflection',tag:'write',time:'3:00'}],
+    evening:[{id:'fr-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'fr-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'fr-fre',label:'Free evening',tag:'eve',time:'8:00'}]
   }
 };
 
@@ -319,6 +319,7 @@ function renderChecklist(){
       var dn=done[item.id]?'done':'',chk=done[item.id]?'<span style="color:#fff;font-size:10px;font-weight:700;">✓</span>':'';
       html+='<div class="chk '+dn+'" onclick="toggleCheck(\''+iso+'\',\''+item.id+'\')">' +
         '<div class="chk-box">'+chk+'</div>' +
+        (item.time?'<span style="font-size:.55rem;color:var(--muted);white-space:nowrap;min-width:32px;">'+item.time+'</span>':'') +
         '<span class="chk-lbl">'+item.label+'</span>' +
         '<span class="chk-tag '+TAG_CLS[item.tag]+'">'+item.tag+'</span>' +
         '<span class="chk-pts">+'+PTS.item+'</span></div>';
