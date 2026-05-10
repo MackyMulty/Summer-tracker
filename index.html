@@ -19,7 +19,7 @@ body{background:var(--cream);color:var(--ink);font-family:var(--mono);display:fl
 #topbar-pts{background:var(--gold);color:var(--ink);font-size:.65rem;font-weight:700;padding:3px 10px;border-radius:20px;cursor:pointer;letter-spacing:.06em;border:none;font-family:var(--mono);}
 #topbar-date{font-size:.58rem;color:var(--gold);letter-spacing:.1em;text-transform:uppercase;}
 #tabs{display:flex;background:var(--ink);border-bottom:1px solid var(--dark);flex-shrink:0;}
-.tab{flex:1;padding:9px 2px;font-family:var(--mono);font-size:.55rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;}
+.tab{flex:1;padding:9px 2px;font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;}
 .tab.on{color:var(--gold);border-bottom-color:var(--gold);}
 #panels{flex:1;overflow:hidden;position:relative;}
 .panel{position:absolute;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding:14px;display:none;}
@@ -100,8 +100,7 @@ body{background:var(--cream);color:var(--ink);font-family:var(--mono);display:fl
 </div>
 
 <div id="tabs">
-  <button class="tab on"  data-panel="alarm"     onclick="show('alarm')">⏰ Alarm</button>
-  <button class="tab"     data-panel="checklist" onclick="show('checklist')">✓ Today</button>
+  <button class="tab on"  data-panel="checklist" onclick="show('checklist')">✓ Today</button>
   <button class="tab"     data-panel="weight"    onclick="show('weight')">⚖ Weight</button>
   <button class="tab"     data-panel="savings"   onclick="show('savings')">💰 Savings</button>
   <button class="tab"     data-panel="stats"     onclick="show('stats')">★ Stats</button>
@@ -109,25 +108,7 @@ body{background:var(--cream);color:var(--ink);font-family:var(--mono);display:fl
 
 <div id="panels">
 
-  <div id="panel-alarm" class="panel on">
-    <div style="max-width:320px;margin:0 auto;">
-      <div id="clock">--:--</div>
-      <div id="clock-date"></div>
-      <div id="alarm-pulse"></div>
-      <div class="dark-card">
-        <div class="gold-lbl">Set Alarm</div>
-        <input type="time" id="alarm-input" value="07:30">
-        <button id="alarm-btn" class="btn" onclick="toggleAlarm()">Set Alarm</button>
-        <div id="snooze-row">
-          <button class="btn" style="background:var(--rust);color:var(--cream);" onclick="snoozeAlarm()">Snooze 9 min</button>
-          <button class="btn" style="background:var(--sage);color:var(--cream);" onclick="dismissAlarm()">Dismiss</button>
-        </div>
-      </div>
-      <div id="alarm-status">No alarm set</div>
-    </div>
-  </div>
-
-  <div id="panel-checklist" class="panel">
+  <div id="panel-checklist" class="panel on">
     <div id="day-nav">
       <button class="nav-btn" onclick="changeDay(-1)">← prev</button>
       <div id="day-label">—</div>
@@ -272,20 +253,10 @@ var ST={
   weightLog:load('weightLog',[]),
   incomeLog:load('incomeLog',[]),
   milestones:load('milestones',[]),
-  dayOffset:defOff(),
-  alarmVal:load('alarmVal','07:30'),
-  alarmOn:load('alarmOn',false),
-  alarmRing:false
+  dayOffset:defOff()
 };
 
 function init(){
-  document.getElementById('alarm-input').value=ST.alarmVal;
-  if(ST.alarmOn){
-    document.getElementById('alarm-btn').textContent='Cancel Alarm';
-    document.getElementById('alarm-btn').style.background='var(--muted)';
-    document.getElementById('alarm-status').textContent='⏰ Set for '+fmtT(ST.alarmVal);
-    document.getElementById('alarm-status').className='alarm-status on';
-  }
   document.getElementById('w-date').value=lk(new Date());
   renderChecklist();
   updateTopPts();
@@ -305,76 +276,9 @@ function goStats(){show('stats');}
 
 function tick(){
   var now=new Date();
-  var h=pad(now.getHours()),m=pad(now.getMinutes());
-  document.getElementById('clock').textContent=h+':'+m;
-  document.getElementById('clock-date').textContent=now.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'});
   document.getElementById('topbar-date').textContent=now.toLocaleDateString('en-US',{weekday:'short',month:'short',day:'numeric'}).toUpperCase();
-  if(ST.alarmOn&&!ST.alarmRing&&ST.alarmVal){
-    var p=ST.alarmVal.split(':'),ah=+p[0],am=+p[1];
-    if(now.getHours()===ah&&now.getMinutes()===am&&now.getSeconds()===0)fireAlarm();
-  }
 }
-setInterval(tick,1000);tick();
-
-var alarmIval=null,actx=null;
-function getACtx(){if(!actx)try{actx=new(window.AudioContext||window.webkitAudioContext)();}catch(e){}return actx;}
-function beep(){
-  var ctx=getACtx();if(!ctx)return;
-  try{[[880,0],[880,.25],[1100,.55],[1100,.8]].forEach(function(p){
-    var o=ctx.createOscillator(),g=ctx.createGain();o.connect(g);g.connect(ctx.destination);
-    o.frequency.value=p[0];o.type='sine';var st=ctx.currentTime+p[1];
-    g.gain.setValueAtTime(.35,st);g.gain.exponentialRampToValueAtTime(.001,st+.22);o.start(st);o.stop(st+.22);
-  });}catch(e){}
-}
-function fireAlarm(){
-  ST.alarmRing=true;show('alarm');beep();alarmIval=setInterval(beep,1500);
-  document.getElementById('alarm-pulse').style.display='block';
-  document.getElementById('snooze-row').style.display='flex';
-  document.getElementById('alarm-status').textContent='🔔 WAKE UP!';
-  document.getElementById('alarm-status').className='alarm-status ring';
-}
-function stopBeep(){clearInterval(alarmIval);alarmIval=null;}
-function toggleAlarm(){
-  if(ST.alarmOn){
-    stopBeep();ST.alarmOn=false;ST.alarmRing=false;save('alarmOn',false);
-    document.getElementById('alarm-btn').textContent='Set Alarm';
-    document.getElementById('alarm-btn').style.background='var(--gold)';
-    document.getElementById('alarm-status').textContent='No alarm set';
-    document.getElementById('alarm-status').className='alarm-status';
-    document.getElementById('alarm-pulse').style.display='none';
-    document.getElementById('snooze-row').style.display='none';
-  } else {
-    ST.alarmVal=document.getElementById('alarm-input').value;ST.alarmOn=true;
-    save('alarmOn',true);save('alarmVal',ST.alarmVal);
-    document.getElementById('alarm-btn').textContent='Cancel Alarm';
-    document.getElementById('alarm-btn').style.background='var(--muted)';
-    document.getElementById('alarm-status').textContent='⏰ Set for '+fmtT(ST.alarmVal);
-    document.getElementById('alarm-status').className='alarm-status on';
-    toast('Alarm set for '+fmtT(ST.alarmVal));
-  }
-}
-function snoozeAlarm(){
-  stopBeep();ST.alarmRing=false;
-  var d=new Date();d.setMinutes(d.getMinutes()+9);
-  ST.alarmVal=pad(d.getHours())+':'+pad(d.getMinutes());
-  save('alarmVal',ST.alarmVal);
-  document.getElementById('alarm-input').value=ST.alarmVal;
-  document.getElementById('alarm-pulse').style.display='none';
-  document.getElementById('snooze-row').style.display='none';
-  document.getElementById('alarm-status').textContent='💤 Snoozed until '+fmtT(ST.alarmVal);
-  toast('Snoozed until '+fmtT(ST.alarmVal));
-}
-function dismissAlarm(){
-  stopBeep();ST.alarmRing=false;ST.alarmOn=false;save('alarmOn',false);
-  document.getElementById('alarm-pulse').style.display='none';
-  document.getElementById('snooze-row').style.display='none';
-  document.getElementById('alarm-btn').textContent='Set Alarm';
-  document.getElementById('alarm-btn').style.background='var(--gold)';
-  document.getElementById('alarm-status').textContent='No alarm set';
-  document.getElementById('alarm-status').className='alarm-status';
-  toast('Good morning!');
-}
-function fmtT(v){var p=v.split(':'),h=+p[0],m=+p[1];return(h%12||12)+':'+pad(m)+(h>=12?' PM':' AM');}
+setInterval(tick,60000);tick();
 
 function getViewDate(){var d=new Date();d.setDate(d.getDate()+ST.dayOffset);return d;}
 function changeDay(n){ST.dayOffset+=n;renderChecklist();}
