@@ -214,28 +214,28 @@ var TAG_CLS={fit:'t-fit',dog:'t-dog',read:'t-read',write:'t-write',career:'t-car
 var SCHED={
   Monday:{
     morning:[{id:'mo-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'mo-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'mo-wgh',label:'Weigh-in',tag:'fit',time:'9:00'},{id:'mo-rd',label:'Morning reading',tag:'read',time:'9:15'}],
-    daytime:[{id:'mo-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'mo-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'mo-sto',label:'Short story intake / brainstorm',tag:'write',time:'12:15'},{id:'mo-car',label:'Course dev / career work',tag:'career',time:'2:00'},{id:'mo-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'}],
-    evening:[{id:'mo-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'mo-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'mo-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
+    daytime:[{id:'mo-tdy',label:'Tidy / errands',tag:'eve',time:'9:45'},{id:'mo-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'mo-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'mo-sto',label:'Short story intake / brainstorm',tag:'write',time:'12:15'},{id:'mo-car',label:'Course dev / career work',tag:'career',time:'2:00'}],
+    evening:[{id:'mo-tdy2',label:'Tidy / errands',tag:'eve',time:'6:30'},{id:'mo-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'mo-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'mo-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Tuesday:{
     morning:[{id:'tu-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'tu-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'tu-rd',label:'Morning reading',tag:'read',time:'9:15'}],
-    daytime:[{id:'tu-yog',label:'Yoga / mobility',tag:'fit',time:'10:00'},{id:'tu-rdp',label:'Reading block',tag:'read',time:'10:45'},{id:'tu-ths',label:'Thesis writing',tag:'write',time:'12:30'},{id:'tu-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'},{id:'tu-pol',label:'Polish / overflow',tag:'write',time:'4:00'}],
-    evening:[{id:'tu-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'tu-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'tu-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
+    daytime:[{id:'tu-tdy',label:'Tidy / errands',tag:'eve',time:'9:45'},{id:'tu-yog',label:'Yoga / mobility',tag:'fit',time:'10:00'},{id:'tu-rdp',label:'Reading block',tag:'read',time:'10:45'},{id:'tu-ths',label:'Thesis writing',tag:'write',time:'12:30'},{id:'tu-pol',label:'Polish / overflow',tag:'write',time:'4:00'}],
+    evening:[{id:'tu-tdy2',label:'Tidy / errands',tag:'eve',time:'6:30'},{id:'tu-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'tu-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'tu-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Wednesday:{
     morning:[{id:'we-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'we-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'we-rd',label:'Morning reading',tag:'read',time:'9:15'}],
-    daytime:[{id:'we-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'we-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'we-ths',label:'Thesis writing — deep revision',tag:'write',time:'12:15'},{id:'we-dpm',label:'Afternoon dog time',tag:'dog',time:'3:30'},{id:'we-adm',label:'Overflow / admin',tag:'write',time:'4:00'}],
-    evening:[{id:'we-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'we-flm',label:'Film of the week',tag:'eve',time:'7:30'},{id:'we-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
+    daytime:[{id:'we-tdy',label:'Tidy / errands',tag:'eve',time:'9:45'},{id:'we-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'we-prk',label:'Dog park',tag:'dog',time:'11:00'},{id:'we-ths',label:'Thesis writing — deep revision',tag:'write',time:'12:15'},{id:'we-adm',label:'Overflow / admin',tag:'write',time:'4:00'}],
+    evening:[{id:'we-tdy2',label:'Tidy / errands',tag:'eve',time:'6:30'},{id:'we-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'we-flm',label:'Film of the week',tag:'eve',time:'7:30'},{id:'we-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Thursday:{
     morning:[{id:'th-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'th-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'th-rd',label:'Morning reading',tag:'read',time:'9:15'}],
-    daytime:[{id:'th-yog',label:'Yoga / mobility',tag:'fit',time:'10:00'},{id:'th-rdp',label:'Reading block',tag:'read',time:'10:45'},{id:'th-ths',label:'Thesis writing',tag:'write',time:'12:30'},{id:'th-car',label:'Course dev / career work',tag:'career',time:'2:30'},{id:'th-not',label:'Loose work / notes',tag:'write',time:'4:00'}],
-    evening:[{id:'th-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'th-jrn',label:'Light journaling',tag:'write',time:'7:30'},{id:'th-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
+    daytime:[{id:'th-tdy',label:'Tidy / errands',tag:'eve',time:'9:45'},{id:'th-rdp',label:'Reading block',tag:'read',time:'10:00'},{id:'th-ths',label:'Writing',tag:'write',time:'12:00'},{id:'th-car',label:'Course dev / career work',tag:'career',time:'2:30'}],
+    evening:[{id:'th-tdy2',label:'Tidy / errands',tag:'eve',time:'6:30'},{id:'th-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'th-wnd',label:'Wind down',tag:'eve',time:'10:00'}]
   },
   Friday:{
     morning:[{id:'fr-str',label:'Stretch & mobility',tag:'fit',time:'8:00'},{id:'fr-wlk',label:'Morning dog walk',tag:'dog',time:'8:15'},{id:'fr-wgh',label:'Weigh-in',tag:'fit',time:'9:00'},{id:'fr-rd',label:'Morning reading — pleasure',tag:'read',time:'9:15'}],
-    daytime:[{id:'fr-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'fr-adv',label:'Long dog adventure',tag:'dog',time:'11:00'},{id:'fr-sto',label:'Short story work',tag:'write',time:'12:45'},{id:'fr-dpm',label:'Afternoon dog time',tag:'dog',time:'2:30'},{id:'fr-ref',label:'Week reflection',tag:'write',time:'3:00'}],
-    evening:[{id:'fr-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'fr-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'fr-fre',label:'Free evening',tag:'eve',time:'8:00'}]
+    daytime:[{id:'fr-tdy',label:'Tidy / errands',tag:'eve',time:'9:45'},{id:'fr-gym',label:'Gym — lift',tag:'fit',time:'10:00'},{id:'fr-adv',label:'Long dog adventure',tag:'dog',time:'11:00'},{id:'fr-sto',label:'Short story work',tag:'write',time:'12:45'},{id:'fr-ref',label:'Week reflection',tag:'write',time:'3:00'}],
+    evening:[{id:'fr-tdy2',label:'Tidy / errands',tag:'eve',time:'6:30'},{id:'fr-ewk',label:'Evening dog walk',tag:'dog',time:'7:00'},{id:'fr-pod',label:'Podcast time',tag:'read',time:'7:30'},{id:'fr-fre',label:'Free evening',tag:'eve',time:'8:00'}]
   }
 };
 
